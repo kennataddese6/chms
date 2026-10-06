@@ -3,12 +3,14 @@ import packageJson from "../../package.json";
 const currentYear = new Date().getFullYear();
 
 export const APP_CONFIG = {
-  name: "Studio Admin",
+  name: "St. Mary's",
+  shortName: "CHMS",
+  churchName: "St. Mary's Community Church",
   version: packageJson.version,
-  copyright: `© ${currentYear}, Studio Admin.`,
+  copyright: `© ${currentYear}, St. Mary's Community Church.`,
   meta: {
-    title: "Studio Admin: Open Source Admin Dashboard with shadcn/ui",
+    title: "St. Mary's Community Church — Management & Education Platform",
     description:
-      "A polished open source shadcn/ui admin dashboard with 25+ screens and editions for Radix UI, Base UI, React Aria, and TanStack Start.",
+      "Church management and education platform for St. Mary's Community Church. Manage members, attendance, events, and the Bible Academy.",
   },
 };

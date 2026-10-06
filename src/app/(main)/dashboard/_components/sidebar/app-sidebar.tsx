@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Command } from "lucide-react";
+import { Church } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
 
 import {
@@ -15,15 +15,14 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { APP_CONFIG } from "@/config/app-config";
-import { rootUser } from "@/data/users";
 import { sidebarItems } from "@/navigation/sidebar/sidebar-items";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
+import { useRoleStore } from "@/stores/role/role-store";
 
 import { NavMain } from "./nav-main";
-import { NavUser } from "./nav-user";
-import { SupportCard } from "./support-card";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useRoleStore();
   const { sidebarVariant, sidebarCollapsible, isSynced } = usePreferencesStore(
     useShallow((s) => ({
       sidebarVariant: s.values.sidebar_variant,
@@ -40,10 +39,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <Link prefetch={false} href="/dashboard/default">
-                <Command />
-                <span className="font-semibold text-base">{APP_CONFIG.name}</span>
+            <SidebarMenuButton asChild size="lg">
+              <Link prefetch={false} href="/dashboard">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-blue-600 text-white">
+                  <Church className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold text-sm">{APP_CONFIG.name}</span>
+                  <span className="text-[11px] text-blue-600 dark:text-blue-400 font-medium">Admin Portal</span>
+                </div>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -52,9 +56,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={sidebarItems} />
       </SidebarContent>
-      <SidebarFooter>
-        <SupportCard />
-        <NavUser user={rootUser} />
+      <SidebarFooter className="p-3">
+        <div className="flex items-center gap-3 rounded-lg border bg-card p-3 shadow-xs">
+          <div className="flex size-9 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 font-semibold text-xs">
+            AD
+          </div>
+          <div className="flex flex-col text-xs min-w-0 flex-1">
+            <span className="font-semibold truncate">{user.name}</span>
+            <span className="text-muted-foreground truncate">{user.title}</span>
+          </div>
+        </div>
       </SidebarFooter>
     </Sidebar>
   );

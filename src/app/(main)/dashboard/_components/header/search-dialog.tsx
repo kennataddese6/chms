@@ -4,11 +4,10 @@ import * as React from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Search } from "lucide-react";
+import { BookOpen, Calendar, GraduationCap, School, Search, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -17,69 +16,13 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import type { NavMainItem } from "@/navigation/sidebar/sidebar-items";
-import { sidebarItems } from "@/navigation/sidebar/sidebar-items";
-
-type SearchItem = {
-  id: string;
-  group: string;
-  label: string;
-  url: string;
-  icon?: NavMainItem["icon"];
-  disabled?: boolean;
-  newTab?: boolean;
-};
-
-const sidebarGroupLabels = new Set(sidebarItems.flatMap((group) => (group.label ? [group.label] : [])));
-
-function getSubItemGroup(groupLabel: string | undefined, itemTitle: string) {
-  return sidebarGroupLabels.has(itemTitle) ? (groupLabel ?? "Other") : itemTitle;
-}
-
-const searchItems: SearchItem[] = sidebarItems.flatMap((group) =>
-  group.items.flatMap((item) => {
-    if (item.subItems) {
-      return item.subItems.map((sub) => ({
-        id: sub.id,
-        group: getSubItemGroup(group.label, item.title),
-        label: sub.title,
-        url: sub.url,
-        icon: item.icon,
-        disabled: sub.disabled,
-        newTab: sub.newTab,
-      }));
-    }
-    return [
-      {
-        id: item.id,
-        group: group.label ?? "Other",
-        label: item.title,
-        url: item.url,
-        icon: item.icon,
-        disabled: item.disabled,
-        newTab: item.newTab,
-      },
-    ];
-  }),
-);
-
-function getAvailableItems(items: SearchItem[]) {
-  return items.filter((item) => !item.disabled && !item.url.includes("coming-soon"));
-}
-
-const recommendations = getAvailableItems(searchItems);
-
-function groupBy(items: SearchItem[]) {
-  const groups = [...new Set(items.map((item) => item.group))];
-  return groups.map((group) => ({
-    group,
-    items: items.filter((item) => item.group === group),
-  }));
-}
+import { courses } from "@/data/courses";
+import { events } from "@/data/events";
+import { members } from "@/data/members";
+import { students } from "@/data/students";
 
 export function SearchDialog() {
   const [open, setOpen] = React.useState(false);
-  const [query, setQuery] = React.useState("");
   const router = useRouter();
 
   React.useEffect(() => {
@@ -93,64 +36,110 @@ export function SearchDialog() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const handleOpenChange = (value: boolean) => {
-    setOpen(value);
-    if (!value) setQuery("");
+  const handleSelect = (url: string) => {
+    setOpen(false);
+    router.push(url);
   };
-
-  const handleSelect = (item: SearchItem) => {
-    if (item.disabled) return;
-    handleOpenChange(false);
-    if (item.newTab) {
-      window.open(item.url, "_blank", "noopener,noreferrer");
-    } else {
-      router.push(item.url);
-    }
-  };
-
-  const renderGroups = (items: SearchItem[]) =>
-    groupBy(items).map(({ group, items: groupItems }, index) => (
-      <React.Fragment key={group}>
-        {index > 0 && <CommandSeparator />}
-        <CommandGroup heading={group}>
-          {groupItems.map((item) => (
-            <CommandItem
-              disabled={item.disabled}
-              key={`${group}-${item.id}`}
-              value={`${item.group} ${item.label}`}
-              onSelect={() => handleSelect(item)}
-            >
-              <span className="flex min-w-0 items-center gap-2">
-                {item.icon && <item.icon />}
-                <span className="truncate">{item.label}</span>
-              </span>
-            </CommandItem>
-          ))}
-        </CommandGroup>
-      </React.Fragment>
-    ));
 
   return (
     <>
       <Button
-        onClick={() => handleOpenChange(true)}
-        variant="link"
-        className="px-0! font-normal text-muted-foreground hover:no-underline"
+        variant="outline"
+        className="relative h-9 w-full justify-start text-xs text-muted-foreground sm:w-64 sm:pr-12"
+        onClick={() => setOpen(true)}
       >
-        <Search data-icon="inline-start" />
-        Search
-        <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-medium text-[10px]">
+        <Search className="mr-2 size-3.5" />
+        <span>Search members, events, courses...</span>
+        <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-0.5 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 sm:flex">
           <span className="text-xs">⌘</span>J
         </kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={handleOpenChange}>
-        <Command>
-          <CommandInput placeholder="Search dashboards, users, and more…" value={query} onValueChange={setQuery} />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            {query ? renderGroups(searchItems) : renderGroups(recommendations)}
-          </CommandList>
-        </Command>
+
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type to search members, events, or courses..." className="text-xs" />
+        <CommandList>
+          <CommandEmpty className="py-6 text-center text-xs text-muted-foreground">No results found.</CommandEmpty>
+
+          {/* Members */}
+          <CommandGroup heading="Church Members">
+            {members.slice(0, 6).map((member) => (
+              <CommandItem
+                key={member.id}
+                value={`member ${member.name} ${member.email}`}
+                onSelect={() => handleSelect(`/dashboard/members/${member.id}`)}
+                className="text-xs gap-2 cursor-pointer py-2"
+              >
+                <User className="size-3.5 text-blue-500" />
+                <div className="flex flex-col">
+                  <span className="font-semibold">{member.name}</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    {member.email} • {member.groups.join(", ")}
+                  </span>
+                </div>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          {/* Events */}
+          <CommandGroup heading="Church Events">
+            {events.slice(0, 4).map((evt) => (
+              <CommandItem
+                key={evt.id}
+                value={`event ${evt.title} ${evt.location}`}
+                onSelect={() => handleSelect("/dashboard/events")}
+                className="text-xs gap-2 cursor-pointer py-2"
+              >
+                <Calendar className="size-3.5 text-emerald-500" />
+                <div className="flex flex-col">
+                  <span className="font-semibold">{evt.title}</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    {evt.date} • {evt.location}
+                  </span>
+                </div>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          {/* Courses & Education */}
+          <CommandGroup heading="Education Courses & Students">
+            {courses.slice(0, 4).map((crs) => (
+              <CommandItem
+                key={crs.id}
+                value={`course ${crs.title} ${crs.subject}`}
+                onSelect={() => handleSelect(`/student/courses/${crs.id}`)}
+                className="text-xs gap-2 cursor-pointer py-2"
+              >
+                <BookOpen className="size-3.5 text-purple-500" />
+                <div className="flex flex-col">
+                  <span className="font-semibold">{crs.title}</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    {crs.subject} • Instructor: {crs.teacherName}
+                  </span>
+                </div>
+              </CommandItem>
+            ))}
+            {students.slice(0, 3).map((std) => (
+              <CommandItem
+                key={std.id}
+                value={`student ${std.name} ${std.level}`}
+                onSelect={() => handleSelect(`/dashboard/education/students/${std.id}`)}
+                className="text-xs gap-2 cursor-pointer py-2"
+              >
+                <GraduationCap className="size-3.5 text-amber-500" />
+                <div className="flex flex-col">
+                  <span className="font-semibold">{std.name} (Student)</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Level: {std.level} • Grade: {std.averageGrade}%
+                  </span>
+                </div>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
       </CommandDialog>
     </>
   );
