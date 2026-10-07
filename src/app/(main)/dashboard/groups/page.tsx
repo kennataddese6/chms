@@ -162,7 +162,7 @@ export default function AdminGroupsPage() {
 
       {/* Group Content Area */}
       {viewMode === "grid" ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredGroups.length === 0 ? (
             <div className="col-span-full space-y-2 rounded-lg border bg-card py-12 text-center text-muted-foreground text-sm">
               <p>No church groups match your search criteria.</p>
