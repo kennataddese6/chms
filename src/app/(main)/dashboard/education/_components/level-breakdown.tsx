@@ -35,10 +35,10 @@ export function LevelBreakdown() {
     <Card className="col-span-12 lg:col-span-7">
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle className="text-base font-semibold">Education Level Breakdown</CardTitle>
+          <CardTitle className="font-semibold text-base">Education Level Breakdown</CardTitle>
           <CardDescription>Metrics, student counts, and performance by tier</CardDescription>
         </div>
-        <Button variant="ghost" size="sm" asChild className="text-xs gap-1">
+        <Button variant="ghost" size="sm" asChild className="gap-1 text-xs">
           <Link href="/dashboard/education/students">
             View All Students <ArrowRight className="size-3.5" />
           </Link>
@@ -49,27 +49,27 @@ export function LevelBreakdown() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-xs font-semibold">Level</TableHead>
-                <TableHead className="text-xs font-semibold text-center">Enrolled Students</TableHead>
-                <TableHead className="text-xs font-semibold text-center">Avg Grade</TableHead>
-                <TableHead className="text-xs font-semibold text-center">Courses</TableHead>
-                <TableHead className="text-xs font-semibold text-center">Teachers</TableHead>
+                <TableHead className="font-semibold text-xs">Level</TableHead>
+                <TableHead className="text-center font-semibold text-xs">Enrolled Students</TableHead>
+                <TableHead className="text-center font-semibold text-xs">Avg Grade</TableHead>
+                <TableHead className="text-center font-semibold text-xs">Courses</TableHead>
+                <TableHead className="text-center font-semibold text-xs">Teachers</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {breakdown.map((lvl) => (
-                <TableRow key={lvl.value} className="hover:bg-muted/40 transition-colors">
+                <TableRow key={lvl.value} className="transition-colors hover:bg-muted/40">
                   <TableCell className="py-2.5 font-medium text-xs">
                     <Badge variant="outline" className="text-[11px]">
                       {lvl.label}
                     </Badge>
                   </TableCell>
-                  <TableCell className="py-2.5 text-center text-xs font-bold">{lvl.studentCount}</TableCell>
-                  <TableCell className="py-2.5 text-center text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  <TableCell className="py-2.5 text-center font-bold text-xs">{lvl.studentCount}</TableCell>
+                  <TableCell className="py-2.5 text-center font-semibold text-emerald-600 text-xs dark:text-emerald-400">
                     {lvl.avgGrade}
                   </TableCell>
                   <TableCell className="py-2.5 text-center text-xs">{lvl.courseCount}</TableCell>
-                  <TableCell className="py-2.5 text-center text-xs text-muted-foreground">{lvl.teacherCount}</TableCell>
+                  <TableCell className="py-2.5 text-center text-muted-foreground text-xs">{lvl.teacherCount}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

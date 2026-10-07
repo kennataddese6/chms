@@ -44,7 +44,7 @@ export function StudentSidebar({ ...props }: React.ComponentProps<typeof Sidebar
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold text-sm">{APP_CONFIG.name}</span>
-                  <span className="text-[11px] text-purple-600 dark:text-purple-400 font-medium">Student Portal</span>
+                  <span className="font-medium text-[11px] text-purple-600 dark:text-purple-400">Student Portal</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -56,12 +56,12 @@ export function StudentSidebar({ ...props }: React.ComponentProps<typeof Sidebar
       </SidebarContent>
       <SidebarFooter className="p-3">
         <div className="flex items-center gap-3 rounded-lg border bg-card p-3 shadow-xs">
-          <div className="flex size-9 items-center justify-center rounded-full bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300 font-semibold text-xs">
+          <div className="flex size-9 items-center justify-center rounded-full bg-purple-100 font-semibold text-purple-700 text-xs dark:bg-purple-950 dark:text-purple-300">
             DT
           </div>
-          <div className="flex flex-col text-xs min-w-0 flex-1">
-            <span className="font-semibold truncate">{DEMO_USERS.student.name}</span>
-            <span className="text-muted-foreground truncate">{DEMO_USERS.student.title}</span>
+          <div className="flex min-w-0 flex-1 flex-col text-xs">
+            <span className="truncate font-semibold">{DEMO_USERS.student.name}</span>
+            <span className="truncate text-muted-foreground">{DEMO_USERS.student.title}</span>
           </div>
         </div>
       </SidebarFooter>

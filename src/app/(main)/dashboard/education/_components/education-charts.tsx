@@ -17,7 +17,7 @@ export function EducationCharts() {
   return (
     <Card className="col-span-12 lg:col-span-5">
       <CardHeader>
-        <CardTitle className="text-base font-semibold">Grade Distribution</CardTitle>
+        <CardTitle className="font-semibold text-base">Grade Distribution</CardTitle>
         <CardDescription>Academic performance across all 186 enrolled students</CardDescription>
       </CardHeader>
       <CardContent>
@@ -25,16 +25,16 @@ export function EducationCharts() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={gradeDistributionData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-muted/40" />
-              <XAxis dataKey="grade" tickLine={false} axisLine={false} className="text-[10px] fill-muted-foreground" />
-              <YAxis tickLine={false} axisLine={false} className="text-[11px] fill-muted-foreground" />
+              <XAxis dataKey="grade" tickLine={false} axisLine={false} className="fill-muted-foreground text-[10px]" />
+              <YAxis tickLine={false} axisLine={false} className="fill-muted-foreground text-[11px]" />
               <Tooltip
                 content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
+                  if (active && payload?.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="rounded-lg border bg-popover p-2 shadow-md text-xs">
+                      <div className="rounded-lg border bg-popover p-2 text-xs shadow-md">
                         <p className="font-semibold">{data.grade}</p>
-                        <p className="text-emerald-600 dark:text-emerald-400 font-bold">{data.count} students</p>
+                        <p className="font-bold text-emerald-600 dark:text-emerald-400">{data.count} students</p>
                       </div>
                     );
                   }

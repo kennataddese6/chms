@@ -1,4 +1,13 @@
-import { Calendar, CalendarCheck, GraduationCap, LayoutDashboard, type LucideIcon, Users } from "lucide-react";
+import {
+  Calendar,
+  CalendarCheck,
+  GraduationCap,
+  LayoutDashboard,
+  type LucideIcon,
+  School,
+  Users,
+  UsersRound,
+} from "lucide-react";
 
 export type NavBadge = "new" | "soon";
 
@@ -67,6 +76,12 @@ export const adminSidebarItems: NavGroup[] = [
         url: "/dashboard/events",
         icon: Calendar,
       },
+      {
+        id: "admin-groups",
+        title: "Groups & Ministries",
+        url: "/dashboard/groups",
+        icon: UsersRound,
+      },
     ],
   },
   {
@@ -78,6 +93,12 @@ export const adminSidebarItems: NavGroup[] = [
         title: "Education Overview",
         url: "/dashboard/education",
         icon: GraduationCap,
+      },
+      {
+        id: "admin-classes",
+        title: "Classes & Cohorts",
+        url: "/dashboard/education/classes",
+        icon: School,
       },
       {
         id: "admin-students",

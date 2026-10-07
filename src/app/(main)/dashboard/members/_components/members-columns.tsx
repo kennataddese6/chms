@@ -56,7 +56,7 @@ export const memberColumns: ColumnDef<DataTableFeatures, Member>[] = [
       return (
         <div className="flex flex-wrap gap-1">
           {groups.slice(0, 2).map((grp: string) => (
-            <Badge key={grp} variant="outline" className="text-[10px] bg-muted/30">
+            <Badge key={grp} variant="outline" className="bg-muted/30 text-[10px]">
               {grp}
             </Badge>
           ))}
@@ -72,14 +72,14 @@ export const memberColumns: ColumnDef<DataTableFeatures, Member>[] = [
       const rate = row.original.attendanceRate;
       const color =
         rate >= 80 ? "text-emerald-600 dark:text-emerald-400" : rate >= 60 ? "text-amber-600" : "text-red-600";
-      return <span className={`text-xs font-semibold ${color}`}>{rate}%</span>;
+      return <span className={`font-semibold text-xs ${color}`}>{rate}%</span>;
     },
   },
   {
     accessorKey: "joinedDate",
     header: "Joined Date",
     cell: ({ row }: { row: { original: Member } }) => (
-      <span className="text-xs text-muted-foreground">{row.original.joinedDate}</span>
+      <span className="text-muted-foreground text-xs">{row.original.joinedDate}</span>
     ),
   },
 ];

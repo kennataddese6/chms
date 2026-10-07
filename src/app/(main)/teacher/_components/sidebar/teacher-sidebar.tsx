@@ -44,7 +44,7 @@ export function TeacherSidebar({ ...props }: React.ComponentProps<typeof Sidebar
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold text-sm">{APP_CONFIG.name}</span>
-                  <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">Teacher Portal</span>
+                  <span className="font-medium text-[11px] text-emerald-600 dark:text-emerald-400">Teacher Portal</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -56,12 +56,12 @@ export function TeacherSidebar({ ...props }: React.ComponentProps<typeof Sidebar
       </SidebarContent>
       <SidebarFooter className="p-3">
         <div className="flex items-center gap-3 rounded-lg border bg-card p-3 shadow-xs">
-          <div className="flex size-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-semibold text-xs">
+          <div className="flex size-9 items-center justify-center rounded-full bg-emerald-100 font-semibold text-emerald-700 text-xs dark:bg-emerald-950 dark:text-emerald-300">
             JO
           </div>
-          <div className="flex flex-col text-xs min-w-0 flex-1">
-            <span className="font-semibold truncate">{DEMO_USERS.teacher.name}</span>
-            <span className="text-muted-foreground truncate">{DEMO_USERS.teacher.title}</span>
+          <div className="flex min-w-0 flex-1 flex-col text-xs">
+            <span className="truncate font-semibold">{DEMO_USERS.teacher.name}</span>
+            <span className="truncate text-muted-foreground">{DEMO_USERS.teacher.title}</span>
           </div>
         </div>
       </SidebarFooter>

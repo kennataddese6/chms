@@ -68,12 +68,12 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-xs font-semibold">Member Name</TableHead>
-              <TableHead className="text-xs font-semibold">Phone</TableHead>
-              <TableHead className="text-xs font-semibold">Status</TableHead>
-              <TableHead className="text-xs font-semibold">Ministry / Group</TableHead>
-              <TableHead className="text-xs font-semibold">Attendance Rate</TableHead>
-              <TableHead className="text-xs font-semibold">Joined Date</TableHead>
+              <TableHead className="font-semibold text-xs">Member Name</TableHead>
+              <TableHead className="font-semibold text-xs">Phone</TableHead>
+              <TableHead className="font-semibold text-xs">Status</TableHead>
+              <TableHead className="font-semibold text-xs">Ministry / Group</TableHead>
+              <TableHead className="font-semibold text-xs">Attendance Rate</TableHead>
+              <TableHead className="font-semibold text-xs">Joined Date</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -81,7 +81,7 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
               paginatedRows.map((member) => (
                 <TableRow
                   key={member.id}
-                  className="cursor-pointer hover:bg-muted/50 transition-colors"
+                  className="cursor-pointer transition-colors hover:bg-muted/50"
                   onClick={() => router.push(`/dashboard/members/${member.id}`)}
                 >
                   <TableCell className="py-3">
@@ -110,7 +110,7 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
                   <TableCell className="py-3">
                     <div className="flex flex-wrap gap-1">
                       {member.groups.slice(0, 2).map((grp) => (
-                        <Badge key={grp} variant="outline" className="text-[10px] bg-muted/30">
+                        <Badge key={grp} variant="outline" className="bg-muted/30 text-[10px]">
                           {grp}
                         </Badge>
                       ))}
@@ -121,7 +121,7 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
                   </TableCell>
                   <TableCell className="py-3">
                     <span
-                      className={`text-xs font-semibold ${
+                      className={`font-semibold text-xs ${
                         member.attendanceRate >= 80
                           ? "text-emerald-600 dark:text-emerald-400"
                           : member.attendanceRate >= 60
@@ -132,12 +132,12 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
                       {member.attendanceRate}%
                     </span>
                   </TableCell>
-                  <TableCell className="py-3 text-xs text-muted-foreground">{member.joinedDate}</TableCell>
+                  <TableCell className="py-3 text-muted-foreground text-xs">{member.joinedDate}</TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={6} className="h-24 text-center text-xs text-muted-foreground">
+                <TableCell colSpan={6} className="h-24 text-center text-muted-foreground text-xs">
                   No members found matching your filters.
                 </TableCell>
               </TableRow>
@@ -147,9 +147,9 @@ export function MembersTable({ initialMembers }: MembersTableProps) {
       </div>
 
       {/* Pagination & Prototype Indicator */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground gap-2">
+      <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-1.5">
-          <Info className="size-3.5 text-primary/70 shrink-0" />
+          <Info className="size-3.5 shrink-0 text-primary/70" />
           <span>
             Showing {paginatedRows.length} of {totalOrganizationMembers} total members (representative demo subset)
           </span>

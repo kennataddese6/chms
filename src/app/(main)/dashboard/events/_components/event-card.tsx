@@ -24,23 +24,23 @@ export function EventCard({ event }: EventCardProps) {
   };
 
   return (
-    <Card className="flex flex-col justify-between hover:border-primary/40 transition-colors">
+    <Card className="flex flex-col justify-between transition-colors hover:border-primary/40">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
-          <Badge className={`text-[11px] font-medium border-0 ${style.badgeClass}`}>{style.label}</Badge>
+          <Badge className={`border-0 font-medium text-[11px] ${style.badgeClass}`}>{style.label}</Badge>
           {event.attendeeCount && (
-            <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground font-medium">
+            <span className="inline-flex items-center gap-1 font-medium text-[11px] text-muted-foreground">
               <Users className="size-3" />
               {event.attendeeCount} expected
             </span>
           )}
         </div>
-        <CardTitle className="text-base font-bold mt-2 leading-snug">{event.title}</CardTitle>
-        <CardDescription className="text-xs line-clamp-2 mt-1">{event.description}</CardDescription>
+        <CardTitle className="mt-2 font-bold text-base leading-snug">{event.title}</CardTitle>
+        <CardDescription className="mt-1 line-clamp-2 text-xs">{event.description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-0 text-xs text-muted-foreground space-y-2">
-        <div className="border-t pt-3 grid grid-cols-2 gap-2">
+      <CardContent className="space-y-2 pt-0 text-muted-foreground text-xs">
+        <div className="grid grid-cols-2 gap-2 border-t pt-3">
           <span className="inline-flex items-center gap-1.5">
             <Calendar className="size-3.5 text-primary" />
             {event.date}

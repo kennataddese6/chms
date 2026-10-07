@@ -51,9 +51,42 @@ export interface Member {
   attendanceRate: number;
 }
 
+export type GroupCategory = "Ministry" | "Fellowship" | "Service" | "Discipleship" | "Worship";
+
+export interface ChurchGroupActivity {
+  id: string;
+  title: string;
+  date: string;
+}
+
+export interface ChurchGroupUpcomingEvent {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+}
+
+export interface ChurchGroup {
+  id: string;
+  name: string;
+  description: string;
+  category: GroupCategory;
+  leaderId: string;
+  leaderName: string;
+  leaderEmail?: string;
+  memberIds: string[];
+  memberCount: number;
+  meetingSchedule: string;
+  location: string;
+  attendanceRate: number;
+  status: "active" | "upcoming" | "inactive";
+  recentActivity?: ChurchGroupActivity[];
+  upcomingEvents?: ChurchGroupUpcomingEvent[];
+}
+
 // ─── Attendance ─────────────────────────────────────────────────────────────
 
-export type AttendanceStatus = "present" | "absent" | "excused";
+export type AttendanceStatus = "present" | "late" | "absent" | "visitor" | "excused";
 
 export interface AttendanceRecord {
   id: string;
@@ -161,6 +194,31 @@ export interface TeacherClass {
   studentCount: number;
   averageGrade: number;
   nextLesson?: string;
+}
+
+export interface EducationClassActivity {
+  id: string;
+  title: string;
+  date: string;
+}
+
+export interface EducationClass {
+  id: string;
+  name: string;
+  gradeLevel: string; // "Grade 1", "Grade 2", ..., "Grade 12", "Graduation Class"
+  level: EducationLevel;
+  teacherId: string;
+  teacherName: string;
+  studentIds: string[];
+  studentCount: number;
+  attendanceRate: number;
+  averageGrade: number;
+  status: "active" | "upcoming" | "completed";
+  room?: string;
+  schedule?: string;
+  courseIds?: string[];
+  recentActivity?: EducationClassActivity[];
+  progressionNextGrade?: string;
 }
 
 export interface Course {

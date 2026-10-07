@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ArrowRight, BookOpen, FileText, Users } from "lucide-react";
+import { ArrowRight, FileText, Users } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ interface CourseCardProps {
 
 export function CourseCard({ course }: CourseCardProps) {
   return (
-    <Card className="flex flex-col justify-between hover:border-primary/40 transition-colors">
+    <Card className="flex flex-col justify-between transition-colors hover:border-primary/40">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between gap-2">
           <Badge variant="outline" className="text-[10px]">
@@ -24,11 +24,11 @@ export function CourseCard({ course }: CourseCardProps) {
             {course.subject}
           </Badge>
         </div>
-        <CardTitle className="text-base font-bold mt-2 leading-snug">{course.title}</CardTitle>
-        <CardDescription className="text-xs line-clamp-2 mt-1">{course.description}</CardDescription>
+        <CardTitle className="mt-2 font-bold text-base leading-snug">{course.title}</CardTitle>
+        <CardDescription className="mt-1 line-clamp-2 text-xs">{course.description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-0 space-y-3 text-xs">
+      <CardContent className="space-y-3 pt-0 text-xs">
         <div className="flex items-center justify-between border-t pt-3 text-muted-foreground">
           <span className="inline-flex items-center gap-1">
             <FileText className="size-3.5 text-primary" />
@@ -40,7 +40,7 @@ export function CourseCard({ course }: CourseCardProps) {
           </span>
         </div>
 
-        <Button size="sm" variant="outline" asChild className="w-full text-xs gap-1.5">
+        <Button size="sm" variant="outline" asChild className="w-full gap-1.5 text-xs">
           <Link href={`/teacher/courses/${course.id}`}>
             Manage Lessons <ArrowRight className="size-3.5" />
           </Link>

@@ -146,7 +146,7 @@ export function CreateEventDialog({ onAddEvent }: CreateEventDialogProps) {
                 placeholder="Details, speakers, or special notes..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="text-xs min-h-[70px]"
+                className="min-h-[70px] text-xs"
               />
             </div>
           </div>

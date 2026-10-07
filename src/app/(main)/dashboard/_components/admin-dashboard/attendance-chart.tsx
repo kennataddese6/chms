@@ -9,7 +9,7 @@ export function AdminAttendanceChart() {
   return (
     <Card className="col-span-12 lg:col-span-7">
       <CardHeader>
-        <CardTitle className="text-base font-semibold">Weekly Attendance Trend</CardTitle>
+        <CardTitle className="font-semibold text-base">Weekly Attendance Trend</CardTitle>
         <CardDescription>Sunday Service attendance records over the last 12 weeks</CardDescription>
       </CardHeader>
       <CardContent>
@@ -23,19 +23,19 @@ export function AdminAttendanceChart() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-muted/40" />
-              <XAxis dataKey="week" tickLine={false} axisLine={false} className="text-[11px] fill-muted-foreground" />
+              <XAxis dataKey="week" tickLine={false} axisLine={false} className="fill-muted-foreground text-[11px]" />
               <YAxis
                 tickLine={false}
                 axisLine={false}
-                className="text-[11px] fill-muted-foreground"
+                className="fill-muted-foreground text-[11px]"
                 domain={[200, 360]}
               />
               <Tooltip
                 content={({ active, payload, label }) => {
-                  if (active && payload && payload.length) {
+                  if (active && payload?.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="rounded-lg border bg-popover p-2.5 shadow-md text-xs">
+                      <div className="rounded-lg border bg-popover p-2.5 text-xs shadow-md">
                         <p className="font-semibold">
                           {label} ({data.date})
                         </p>

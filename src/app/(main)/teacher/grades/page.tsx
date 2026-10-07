@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Award, FileSpreadsheet, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,24 +27,24 @@ export default function TeacherGradesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Gradebook & Exam Results</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">Gradebook & Exam Results</h1>
+        <p className="text-muted-foreground text-sm">
           St. Mary&apos;s Education — Review student exam scores, quiz grades, and overall standing.
         </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+          <Search className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
           <Input
             placeholder="Search student or subject..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-8 text-xs h-9"
+            className="h-9 pl-8 text-xs"
           />
         </div>
         <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-          <SelectTrigger className="w-[160px] h-9 text-xs">
+          <SelectTrigger className="h-9 w-[160px] text-xs">
             <SelectValue placeholder="Subject" />
           </SelectTrigger>
           <SelectContent>
@@ -61,7 +61,7 @@ export default function TeacherGradesPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">Student Grade Records</CardTitle>
+          <CardTitle className="font-semibold text-base">Student Grade Records</CardTitle>
           <CardDescription>Evaluated quizzes, mid-terms, and final exam submissions</CardDescription>
         </CardHeader>
         <CardContent>
@@ -69,18 +69,18 @@ export default function TeacherGradesPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-xs font-semibold">Student Name</TableHead>
-                  <TableHead className="text-xs font-semibold">Subject</TableHead>
-                  <TableHead className="text-xs font-semibold">Level</TableHead>
-                  <TableHead className="text-xs font-semibold">Assessment Type</TableHead>
-                  <TableHead className="text-xs font-semibold text-center">Score (%)</TableHead>
-                  <TableHead className="text-xs font-semibold text-center">Grade</TableHead>
-                  <TableHead className="text-xs font-semibold text-right">Date Posted</TableHead>
+                  <TableHead className="font-semibold text-xs">Student Name</TableHead>
+                  <TableHead className="font-semibold text-xs">Subject</TableHead>
+                  <TableHead className="font-semibold text-xs">Level</TableHead>
+                  <TableHead className="font-semibold text-xs">Assessment Type</TableHead>
+                  <TableHead className="text-center font-semibold text-xs">Score (%)</TableHead>
+                  <TableHead className="text-center font-semibold text-xs">Grade</TableHead>
+                  <TableHead className="text-right font-semibold text-xs">Date Posted</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredGrades.map((rec) => (
-                  <TableRow key={rec.id} className="hover:bg-muted/40 transition-colors">
+                  <TableRow key={rec.id} className="transition-colors hover:bg-muted/40">
                     <TableCell className="py-3 font-semibold text-xs">{rec.studentName}</TableCell>
                     <TableCell className="py-3 text-xs">{rec.subject}</TableCell>
                     <TableCell className="py-3">
@@ -88,19 +88,19 @@ export default function TeacherGradesPage() {
                         {getLevelLabel(rec.level)}
                       </Badge>
                     </TableCell>
-                    <TableCell className="py-3 text-xs capitalize text-muted-foreground">{rec.type}</TableCell>
-                    <TableCell className="py-3 text-center text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                    <TableCell className="py-3 text-muted-foreground text-xs capitalize">{rec.type}</TableCell>
+                    <TableCell className="py-3 text-center font-bold text-emerald-600 text-xs dark:text-emerald-400">
                       {rec.score}%
                     </TableCell>
                     <TableCell className="py-3 text-center">
                       <Badge
                         variant={rec.score >= 90 ? "default" : rec.score >= 80 ? "secondary" : "outline"}
-                        className="text-[10px] font-bold"
+                        className="font-bold text-[10px]"
                       >
                         {rec.grade}
                       </Badge>
                     </TableCell>
-                    <TableCell className="py-3 text-right text-xs text-muted-foreground">{rec.date}</TableCell>
+                    <TableCell className="py-3 text-right text-muted-foreground text-xs">{rec.date}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

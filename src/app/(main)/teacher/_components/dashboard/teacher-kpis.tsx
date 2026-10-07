@@ -43,15 +43,15 @@ export function TeacherKpis() {
         const Icon = kpi.icon;
         return (
           <Card key={kpi.title}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-medium text-muted-foreground">{kpi.title}</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="font-medium text-muted-foreground text-xs">{kpi.title}</CardTitle>
               <div className={`flex size-8 items-center justify-center rounded-lg ${kpi.color}`}>
                 <Icon className="size-4" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{kpi.value}</div>
-              <p className="text-[11px] text-muted-foreground mt-0.5">{kpi.subtext}</p>
+              <div className="font-bold text-2xl">{kpi.value}</div>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">{kpi.subtext}</p>
             </CardContent>
           </Card>
         );

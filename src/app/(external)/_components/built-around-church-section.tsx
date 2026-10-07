@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ArrowRight, BookCheck, Building2, ShieldCheck, Sliders } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -22,22 +22,22 @@ export function BuiltAroundChurchSection() {
   ];
 
   return (
-    <section id="adaptable" className="py-16 md:py-24 border-b bg-accent/10">
+    <section id="adaptable" className="border-b bg-accent/10 py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="space-y-4">
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Church Customization</span>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-4xl text-foreground">
+            <span className="font-semibold text-primary text-xs uppercase tracking-wider">Church Customization</span>
+            <h2 className="font-bold text-2xl text-foreground tracking-tight sm:text-4xl">
               Built around the way your church works.
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground text-xs leading-relaxed sm:text-sm">
               Every parish has unique traditions and administrative requirements. The platform easily configures around
               your organizational hierarchy, subjects, levels, and workflows.
             </p>
 
-            <div className="grid gap-3 pt-2 sm:grid-cols-2 text-xs">
+            <div className="grid gap-3 pt-2 text-xs sm:grid-cols-2">
               {points.map((pt) => (
-                <div key={pt.title} className="rounded-lg border bg-card p-3 shadow-xs space-y-1">
+                <div key={pt.title} className="space-y-1 rounded-lg border bg-card p-3 shadow-xs">
                   <h4 className="font-bold text-foreground">{pt.title}</h4>
                   <p className="text-[11px] text-muted-foreground">{pt.desc}</p>
                 </div>
@@ -46,23 +46,23 @@ export function BuiltAroundChurchSection() {
           </div>
 
           {/* Pricing & Prototype Callout Card */}
-          <div className="rounded-2xl border bg-gradient-to-br from-card via-background to-accent/20 p-8 shadow-sm space-y-6 flex flex-col justify-between">
+          <div className="flex flex-col justify-between space-y-6 rounded-2xl border bg-gradient-to-br from-card via-background to-accent/20 p-8 shadow-sm">
             <div className="space-y-3">
-              <span className="inline-block rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold">
+              <span className="inline-block rounded-full bg-primary/10 px-3 py-1 font-semibold text-primary text-xs">
                 Interactive Demonstration
               </span>
-              <h3 className="text-xl font-extrabold text-foreground">See the platform in action.</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <h3 className="font-extrabold text-foreground text-xl">See the platform in action.</h3>
+              <p className="text-muted-foreground text-xs leading-relaxed">
                 Explore the church management, teacher, and student experiences through the interactive prototype.
               </p>
             </div>
 
-            <div className="space-y-4 pt-4 border-t">
-              <p className="text-[11px] text-muted-foreground italic font-medium">
+            <div className="space-y-4 border-t pt-4">
+              <p className="font-medium text-[11px] text-muted-foreground italic">
                 Flexible pricing designed around church size and education enrollment.
               </p>
 
-              <Button size="lg" asChild className="w-full text-xs font-semibold gap-2 shadow-sm">
+              <Button size="lg" asChild className="w-full gap-2 font-semibold text-xs shadow-sm">
                 <Link href="/dashboard">
                   Enter the Prototype <ArrowRight className="size-4" />
                 </Link>

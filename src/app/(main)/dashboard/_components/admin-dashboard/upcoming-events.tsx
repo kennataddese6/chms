@@ -22,10 +22,10 @@ export function AdminUpcomingEvents() {
     <Card className="col-span-12 lg:col-span-5">
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle className="text-base font-semibold">Upcoming Events</CardTitle>
+          <CardTitle className="font-semibold text-base">Upcoming Events</CardTitle>
           <CardDescription>Scheduled services and church activities</CardDescription>
         </div>
-        <Button variant="ghost" size="sm" asChild className="text-xs gap-1">
+        <Button variant="ghost" size="sm" asChild className="gap-1 text-xs">
           <Link href="/dashboard/events">
             View All <ArrowRight className="size-3.5" />
           </Link>
@@ -42,11 +42,11 @@ export function AdminUpcomingEvents() {
               >
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-xs leading-tight">{evt.title}</span>
-                  <Badge variant={badgeInfo.variant as any} className="text-[10px] px-1.5 py-0">
+                  <Badge variant={badgeInfo.variant as any} className="px-1.5 py-0 text-[10px]">
                     {badgeInfo.label}
                   </Badge>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground mt-0.5">
+                <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
                   <span className="inline-flex items-center gap-1">
                     <Calendar className="size-3 text-primary/70" />
                     {evt.date}

@@ -44,7 +44,7 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+          <Search className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
           <Input
             placeholder="Search student..."
             value={search}
@@ -52,7 +52,7 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
               setSearch(e.target.value);
               setPageIndex(0);
             }}
-            className="pl-8 text-xs h-9"
+            className="h-9 pl-8 text-xs"
           />
         </div>
         <Select
@@ -62,7 +62,7 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
             setPageIndex(0);
           }}
         >
-          <SelectTrigger className="w-[150px] h-9 text-xs">
+          <SelectTrigger className="h-9 w-[150px] text-xs">
             <SelectValue placeholder="Education Level" />
           </SelectTrigger>
           <SelectContent>
@@ -81,11 +81,11 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-xs font-semibold">Student Name</TableHead>
-              <TableHead className="text-xs font-semibold">Level</TableHead>
-              <TableHead className="text-xs font-semibold">Course Progress</TableHead>
-              <TableHead className="text-xs font-semibold">Average Grade</TableHead>
-              <TableHead className="text-xs font-semibold">Status</TableHead>
+              <TableHead className="font-semibold text-xs">Student Name</TableHead>
+              <TableHead className="font-semibold text-xs">Level</TableHead>
+              <TableHead className="font-semibold text-xs">Course Progress</TableHead>
+              <TableHead className="font-semibold text-xs">Average Grade</TableHead>
+              <TableHead className="font-semibold text-xs">Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -93,7 +93,7 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
               paginatedRows.map((student) => (
                 <TableRow
                   key={student.id}
-                  className="cursor-pointer hover:bg-muted/50 transition-colors"
+                  className="cursor-pointer transition-colors hover:bg-muted/50"
                   onClick={() => router.push(`/dashboard/education/students/${student.id}`)}
                 >
                   <TableCell className="py-3">
@@ -114,14 +114,14 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
                     </Badge>
                   </TableCell>
                   <TableCell className="py-3">
-                    <div className="flex items-center gap-2 min-w-[120px]">
+                    <div className="flex min-w-[120px] items-center gap-2">
                       <Progress value={student.progress} className="h-1.5 flex-1" />
-                      <span className="text-xs font-semibold text-muted-foreground">{student.progress}%</span>
+                      <span className="font-semibold text-muted-foreground text-xs">{student.progress}%</span>
                     </div>
                   </TableCell>
                   <TableCell className="py-3">
                     <span
-                      className={`text-xs font-bold ${
+                      className={`font-bold text-xs ${
                         student.averageGrade >= 90
                           ? "text-emerald-600 dark:text-emerald-400"
                           : student.averageGrade >= 80
@@ -144,7 +144,7 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-xs text-muted-foreground">
+                <TableCell colSpan={5} className="h-24 text-center text-muted-foreground text-xs">
                   No students found matching your criteria.
                 </TableCell>
               </TableRow>
@@ -153,9 +153,9 @@ export function StudentTable({ initialStudents }: StudentTableProps) {
         </Table>
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground gap-2">
+      <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-1.5">
-          <Info className="size-3.5 text-primary/70 shrink-0" />
+          <Info className="size-3.5 shrink-0 text-primary/70" />
           <span>
             Showing {paginatedRows.length} of {totalOrganizationStudents} total enrolled students (representative demo
             subset)

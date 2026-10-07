@@ -19,8 +19,8 @@ export default function TeacherQuizzesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Quiz & Assessment Builder</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="font-bold text-2xl tracking-tight">Quiz & Assessment Builder</h1>
+          <p className="text-muted-foreground text-sm">
             St. Mary&apos;s Education — Create and manage multiple-choice quizzes for lessons.
           </p>
         </div>

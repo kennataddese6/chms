@@ -40,24 +40,24 @@ export default async function ClassDetailPage({ params }: ClassDetailPageProps) 
       <div className="flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-xs sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-xs bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
+            <Badge variant="outline" className="bg-emerald-500/10 text-emerald-700 text-xs dark:text-emerald-300">
               {getLevelLabel(cls.level)}
             </Badge>
             <Badge variant="secondary" className="text-xs">
               {cls.subject}
             </Badge>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">{cls.name}</h1>
-          <p className="text-xs text-muted-foreground">Taught by Fr. James Osei</p>
+          <h1 className="font-bold text-2xl tracking-tight">{cls.name}</h1>
+          <p className="text-muted-foreground text-xs">Taught by Fr. James Osei</p>
         </div>
 
         <div className="flex items-center gap-6 border-t pt-4 sm:border-t-0 sm:pt-0">
           <div className="text-center">
-            <div className="text-xl font-bold">{cls.studentCount}</div>
+            <div className="font-bold text-xl">{cls.studentCount}</div>
             <div className="text-[11px] text-muted-foreground">Students</div>
           </div>
           <div className="text-center">
-            <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400">{cls.averageGrade}%</div>
+            <div className="font-bold text-emerald-600 text-xl dark:text-emerald-400">{cls.averageGrade}%</div>
             <div className="text-[11px] text-muted-foreground">Class Average</div>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default async function ClassDetailPage({ params }: ClassDetailPageProps) 
       {/* Enrolled Students Table Card */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">Enrolled Students ({classStudents.length})</CardTitle>
+          <CardTitle className="font-semibold text-base">Enrolled Students ({classStudents.length})</CardTitle>
           <CardDescription>Student roster and performance standing for {cls.name}</CardDescription>
         </CardHeader>
         <CardContent>
@@ -74,7 +74,7 @@ export default async function ClassDetailPage({ params }: ClassDetailPageProps) 
             {classStudents.map((std) => (
               <div
                 key={std.id}
-                className="flex items-center justify-between rounded-lg border p-3 hover:bg-accent/40 transition-colors text-xs"
+                className="flex items-center justify-between rounded-lg border p-3 text-xs transition-colors hover:bg-accent/40"
               >
                 <div className="flex items-center gap-3">
                   <Avatar className="size-8">
@@ -88,7 +88,7 @@ export default async function ClassDetailPage({ params }: ClassDetailPageProps) 
                 </div>
 
                 <div className="flex items-center gap-6">
-                  <div className="hidden sm:flex flex-col w-32 gap-1">
+                  <div className="hidden w-32 flex-col gap-1 sm:flex">
                     <div className="flex justify-between text-[11px] text-muted-foreground">
                       <span>Progress</span>
                       <span>{std.progress}%</span>

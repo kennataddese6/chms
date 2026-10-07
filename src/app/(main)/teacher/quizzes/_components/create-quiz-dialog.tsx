@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { HelpCircle, PlusCircle } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -113,8 +113,8 @@ export function CreateQuizDialog({ onAddQuiz }: CreateQuizDialogProps) {
               </Select>
             </div>
 
-            <div className="border-t pt-3 space-y-3">
-              <Label className="text-xs font-bold">Question 1</Label>
+            <div className="space-y-3 border-t pt-3">
+              <Label className="font-bold text-xs">Question 1</Label>
               <Input
                 placeholder="Enter question text..."
                 value={q1}

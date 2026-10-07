@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
-import { ArrowLeft, ArrowRight, BookOpen, Clock, FileText, HelpCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, FileText, HelpCircle } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -40,16 +39,16 @@ export default async function StudentCoursePage({ params }: StudentCoursePagePro
               {course.subject}
             </Badge>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">{course.title}</h1>
-          <p className="text-xs text-muted-foreground max-w-2xl">{course.description}</p>
-          <p className="text-xs font-semibold text-primary pt-1">Instructor: {course.teacherName}</p>
+          <h1 className="font-bold text-2xl tracking-tight">{course.title}</h1>
+          <p className="max-w-2xl text-muted-foreground text-xs">{course.description}</p>
+          <p className="pt-1 font-semibold text-primary text-xs">Instructor: {course.teacherName}</p>
         </div>
       </div>
 
       {/* Course Lessons */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">Lessons Modules ({displayLessons.length})</CardTitle>
+          <CardTitle className="font-semibold text-base">Lessons Modules ({displayLessons.length})</CardTitle>
           <CardDescription>Click a lesson to start or continue reading</CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,31 +57,31 @@ export default async function StudentCoursePage({ params }: StudentCoursePagePro
               <Link
                 key={les.id}
                 href={`/student/courses/${course.id}/lessons/${les.id}`}
-                className="flex flex-col sm:flex-row sm:items-center justify-between rounded-lg border p-4 hover:bg-accent/40 transition-colors gap-3 block"
+                className="block flex flex-col justify-between gap-3 rounded-lg border p-4 transition-colors hover:bg-accent/40 sm:flex-row sm:items-center"
               >
                 <div className="flex items-start gap-3">
-                  <div className="flex size-9 items-center justify-center rounded-lg bg-purple-500/10 text-purple-600 mt-0.5">
+                  <div className="mt-0.5 flex size-9 items-center justify-center rounded-lg bg-purple-500/10 text-purple-600">
                     <FileText className="size-4" />
                   </div>
                   <div className="flex flex-col space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-xs">{les.title}</span>
                       {les.hasQuiz && (
-                        <Badge variant="secondary" className="text-[10px] gap-1">
+                        <Badge variant="secondary" className="gap-1 text-[10px]">
                           <HelpCircle className="size-3 text-purple-600" /> Quiz Included
                         </Badge>
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground line-clamp-1">{les.description}</p>
+                    <p className="line-clamp-1 text-muted-foreground text-xs">{les.description}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between sm:justify-end gap-4 text-xs text-muted-foreground">
+                <div className="flex items-center justify-between gap-4 text-muted-foreground text-xs sm:justify-end">
                   <span className="inline-flex items-center gap-1">
                     <Clock className="size-3.5 text-primary" />
                     {les.duration}
                   </span>
-                  <Button size="sm" variant="ghost" className="text-xs gap-1">
+                  <Button size="sm" variant="ghost" className="gap-1 text-xs">
                     Start <ArrowRight className="size-3.5" />
                   </Button>
                 </div>

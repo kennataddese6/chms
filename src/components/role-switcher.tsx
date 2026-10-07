@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 
 import { Check, ChevronDown, GraduationCap, School, Shield } from "lucide-react";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,7 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { UserRole } from "@/data/types";
-import { getInitials } from "@/lib/utils";
 import { DEMO_USERS, useRoleStore } from "@/stores/role/role-store";
 
 const ROLE_CONFIG: Record<
@@ -68,14 +66,14 @@ export function RoleSwitcher() {
             <CurrentIcon className="size-3.5" />
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-xs font-semibold leading-none">{ROLE_CONFIG[currentRole].label}</span>
-            <span className="text-[10px] text-muted-foreground leading-tight truncate max-w-[120px]">{user.name}</span>
+            <span className="font-semibold text-xs leading-none">{ROLE_CONFIG[currentRole].label}</span>
+            <span className="max-w-[120px] truncate text-[10px] text-muted-foreground leading-tight">{user.name}</span>
           </div>
-          <ChevronDown className="size-3.5 opacity-50 ml-1" />
+          <ChevronDown className="ml-1 size-3.5 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel className="text-xs text-muted-foreground font-normal">
+        <DropdownMenuLabel className="font-normal text-muted-foreground text-xs">
           Switch Prototype Persona
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -89,14 +87,14 @@ export function RoleSwitcher() {
             <DropdownMenuItem
               key={roleKey}
               onClick={() => handleRoleChange(roleKey)}
-              className="flex items-center justify-between py-2 cursor-pointer"
+              className="flex cursor-pointer items-center justify-between py-2"
             >
               <div className="flex items-center gap-2.5">
                 <div className={`flex size-7 items-center justify-center rounded-md ${config.color}`}>
                   <Icon className="size-4" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-medium">{config.label}</span>
+                  <span className="font-medium text-xs">{config.label}</span>
                   <span className="text-[11px] text-muted-foreground">{roleUser.name}</span>
                 </div>
               </div>

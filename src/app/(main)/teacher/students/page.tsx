@@ -13,15 +13,15 @@ export default function TeacherStudentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Teacher&apos;s Student Roster</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">Teacher&apos;s Student Roster</h1>
+        <p className="text-muted-foreground text-sm">
           Students across Grade 1 and Senior Level classes taught by Fr. James Osei.
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">All Enrolled Students ({teacherStudents.length})</CardTitle>
+          <CardTitle className="font-semibold text-base">All Enrolled Students ({teacherStudents.length})</CardTitle>
           <CardDescription>Academic progress and grades for assigned students</CardDescription>
         </CardHeader>
         <CardContent>
@@ -29,7 +29,7 @@ export default function TeacherStudentsPage() {
             {teacherStudents.map((std) => (
               <div
                 key={std.id}
-                className="flex items-center justify-between rounded-lg border p-3 hover:bg-accent/40 transition-colors text-xs"
+                className="flex items-center justify-between rounded-lg border p-3 text-xs transition-colors hover:bg-accent/40"
               >
                 <div className="flex items-center gap-3">
                   <Avatar className="size-8">
@@ -46,9 +46,9 @@ export default function TeacherStudentsPage() {
                   <Badge variant="outline" className="text-[10px]">
                     {getLevelLabel(std.level)}
                   </Badge>
-                  <div className="hidden sm:flex flex-col w-28 gap-1">
+                  <div className="hidden w-28 flex-col gap-1 sm:flex">
                     <Progress value={std.progress} className="h-1.5" />
-                    <span className="text-[10px] text-muted-foreground text-right">{std.progress}% Done</span>
+                    <span className="text-right text-[10px] text-muted-foreground">{std.progress}% Done</span>
                   </div>
                   <div className="text-right">
                     <span className="font-bold text-emerald-600 dark:text-emerald-400">{std.averageGrade}%</span>

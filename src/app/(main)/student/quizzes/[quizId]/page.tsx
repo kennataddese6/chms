@@ -4,7 +4,7 @@ import { use, useState } from "react";
 
 import Link from "next/link";
 
-import { ArrowLeft, Award, CheckCircle2, HelpCircle, RotateCcw, XCircle } from "lucide-react";
+import { ArrowLeft, Award, CheckCircle2, RotateCcw, XCircle } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -50,7 +50,7 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
   const letterGrade = getLetterGrade(calculatedScore);
 
   return (
-    <div className="space-y-6 max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl space-y-6">
       <Button variant="ghost" size="sm" asChild className="gap-1.5 text-xs">
         <Link href="/student/quizzes">
           <ArrowLeft className="size-3.5" /> Back to Quizzes
@@ -60,38 +60,38 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
       {/* Header Banner */}
       <div className="flex flex-col gap-2 rounded-xl border bg-card p-6 shadow-xs">
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-xs bg-purple-500/10 text-purple-700 dark:text-purple-300">
+          <Badge variant="outline" className="bg-purple-500/10 text-purple-700 text-xs dark:text-purple-300">
             {quiz.subject}
           </Badge>
           <Badge variant="secondary" className="text-xs">
             {quiz.questions.length} Questions
           </Badge>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">{quiz.title}</h1>
-        <p className="text-xs text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">{quiz.title}</h1>
+        <p className="text-muted-foreground text-xs">
           Select your answers below and click submit to evaluate your score.
         </p>
       </div>
 
       {/* Score Results Card when Submitted */}
       {submitted && (
-        <Card className="bg-gradient-to-br from-emerald-500/10 via-background to-background border-emerald-500/30">
+        <Card className="border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-background to-background">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-bold flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 font-bold text-lg">
               <Award className="size-5 text-emerald-600" />
               Quiz Submission Results
             </CardTitle>
             <CardDescription>Your score has been saved to your student profile record.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-0">
+          <CardContent className="flex flex-col justify-between gap-4 pt-0 sm:flex-row sm:items-center">
             <div className="flex items-center gap-6">
               <div>
-                <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{calculatedScore}%</div>
-                <div className="text-xs text-muted-foreground font-medium">Total Score</div>
+                <div className="font-bold text-3xl text-emerald-600 dark:text-emerald-400">{calculatedScore}%</div>
+                <div className="font-medium text-muted-foreground text-xs">Total Score</div>
               </div>
               <div className="border-l pl-6">
-                <div className="text-3xl font-bold">{letterGrade}</div>
-                <div className="text-xs text-muted-foreground font-medium">Letter Grade</div>
+                <div className="font-bold text-3xl">{letterGrade}</div>
+                <div className="font-medium text-muted-foreground text-xs">Letter Grade</div>
               </div>
             </div>
             <Button variant="outline" size="sm" onClick={handleRetake} className="gap-1.5 text-xs">
@@ -124,7 +124,7 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
                     Question {qIndex + 1}: {q.question}
                   </span>
                   {submitted && (
-                    <Badge variant={isCorrect ? "default" : "destructive"} className="text-[10px] gap-1 shrink-0">
+                    <Badge variant={isCorrect ? "default" : "destructive"} className="shrink-0 gap-1 text-[10px]">
                       {isCorrect ? <CheckCircle2 className="size-3" /> : <XCircle className="size-3" />}
                       {isCorrect ? "Correct (+100%)" : "Incorrect"}
                     </Badge>
@@ -134,7 +134,7 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
               <CardContent>
                 <RadioGroup
                   value={selectedOption !== undefined ? selectedOption.toString() : ""}
-                  onValueChange={(val) => handleSelectOption(q.id, parseInt(val))}
+                  onValueChange={(val) => handleSelectOption(q.id, parseInt(val, 10))}
                   disabled={submitted}
                   className="space-y-2.5"
                 >
@@ -151,10 +151,10 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
                     return (
                       <div
                         key={optIdx}
-                        className={`flex items-center space-x-3 rounded-lg border p-3 text-xs transition-colors cursor-pointer ${optStyle}`}
+                        className={`flex cursor-pointer items-center space-x-3 rounded-lg border p-3 text-xs transition-colors ${optStyle}`}
                       >
                         <RadioGroupItem value={optIdx.toString()} id={`${q.id}-opt-${optIdx}`} />
-                        <Label htmlFor={`${q.id}-opt-${optIdx}`} className="font-medium flex-1 cursor-pointer">
+                        <Label htmlFor={`${q.id}-opt-${optIdx}`} className="flex-1 cursor-pointer font-medium">
                           {opt}
                         </Label>
                       </div>
@@ -168,7 +168,7 @@ export default function StudentQuizPage({ params }: StudentQuizPageProps) {
 
         {!submitted && (
           <div className="flex justify-end pt-2">
-            <Button type="submit" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold">
+            <Button type="submit" className="bg-purple-600 font-semibold text-white hover:bg-purple-700">
               Submit Quiz for Evaluation
             </Button>
           </div>

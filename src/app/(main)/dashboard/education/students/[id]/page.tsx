@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArrowLeft, Award, BookOpen, CheckCircle, GraduationCap } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle, GraduationCap } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -40,14 +40,14 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <Avatar className="size-20 border-2 border-purple-500/20">
             <AvatarImage src={student.avatarUrl} alt={student.name} />
-            <AvatarFallback className="text-xl font-bold">{getInitials(student.name)}</AvatarFallback>
+            <AvatarFallback className="font-bold text-xl">{getInitials(student.name)}</AvatarFallback>
           </Avatar>
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-xl font-bold tracking-tight">{student.name}</h1>
+              <h1 className="font-bold text-xl tracking-tight">{student.name}</h1>
               <Badge
                 variant="outline"
-                className="text-xs bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-300"
+                className="border-purple-300 bg-purple-500/10 text-purple-700 text-xs dark:text-purple-300"
               >
                 <GraduationCap className="mr-1 size-3" />
                 {getLevelLabel(student.level)}
@@ -56,14 +56,14 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
                 {student.status}
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground">{student.email}</p>
+            <p className="text-muted-foreground text-xs">{student.email}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 border-t pt-4 sm:border-t-0 sm:pt-0">
           <div className="text-right">
-            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{student.averageGrade}%</div>
-            <div className="text-[11px] text-muted-foreground font-medium">Average Score</div>
+            <div className="font-bold text-2xl text-emerald-600 dark:text-emerald-400">{student.averageGrade}%</div>
+            <div className="font-medium text-[11px] text-muted-foreground">Average Score</div>
           </div>
         </div>
       </div>
@@ -85,11 +85,11 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
               <Progress value={student.progress} className="h-2" />
             </div>
 
-            <div className="space-y-2 pt-2 border-t">
+            <div className="space-y-2 border-t pt-2">
               <span className="font-semibold text-muted-foreground">Completed Education Levels:</span>
               <div className="flex flex-wrap gap-1.5">
                 {student.completedLevels.map((lvl) => (
-                  <Badge key={lvl} variant="secondary" className="text-xs gap-1">
+                  <Badge key={lvl} variant="secondary" className="gap-1 text-xs">
                     <CheckCircle className="size-3 text-emerald-600" />
                     {getLevelLabel(lvl)}
                   </Badge>
@@ -110,8 +110,8 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
               <div key={sub.subject} className="flex items-center justify-between border-b pb-2">
                 <span className="font-medium">{sub.subject}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground font-semibold">{sub.grade}%</span>
-                  <Badge variant="outline" className="text-[10px] bg-muted/30">
+                  <span className="font-semibold text-muted-foreground">{sub.grade}%</span>
+                  <Badge variant="outline" className="bg-muted/30 text-[10px]">
                     Grade {sub.letterGrade}
                   </Badge>
                 </div>
@@ -130,11 +130,11 @@ export default async function StudentDetailPage({ params }: StudentDetailPagePro
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2">
             {enrolledCourses.map((crs) => (
-              <div key={crs.id} className="flex items-start gap-3 rounded-lg border p-3 bg-accent/20">
-                <div className="flex size-8 items-center justify-center rounded-md bg-blue-500/10 text-blue-600 mt-0.5">
+              <div key={crs.id} className="flex items-start gap-3 rounded-lg border bg-accent/20 p-3">
+                <div className="mt-0.5 flex size-8 items-center justify-center rounded-md bg-blue-500/10 text-blue-600">
                   <BookOpen className="size-4" />
                 </div>
-                <div className="flex flex-col text-xs min-w-0 flex-1">
+                <div className="flex min-w-0 flex-1 flex-col text-xs">
                   <span className="font-semibold">{crs.title}</span>
                   <span className="text-muted-foreground">
                     {crs.teacherName} — {crs.subject}

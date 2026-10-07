@@ -19,8 +19,8 @@ export default function EventsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Church Events & Calendar</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="font-bold text-2xl tracking-tight">Church Events & Calendar</h1>
+          <p className="text-muted-foreground text-sm">
             St. Mary&apos;s Community Church — Manage worship services, Bible studies, and exams.
           </p>
         </div>

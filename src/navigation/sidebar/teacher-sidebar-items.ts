@@ -1,13 +1,4 @@
-import {
-  Award,
-  BookOpen,
-  CheckSquare,
-  FileSpreadsheet,
-  LayoutDashboard,
-  type LucideIcon,
-  School,
-  Users,
-} from "lucide-react";
+import { Award, BookOpen, CheckSquare, LayoutDashboard, School, Users } from "lucide-react";
 
 import type { NavGroup } from "./admin-sidebar-items";
 

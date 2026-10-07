@@ -44,14 +44,14 @@ export function ChurchManagementSection() {
   ];
 
   return (
-    <section id="management" className="py-16 md:py-24 border-b">
+    <section id="management" className="border-b py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-semibold text-primary uppercase tracking-wider">Church Administration</span>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-4xl text-foreground">
+        <div className="mx-auto max-w-2xl space-y-3 text-center">
+          <span className="font-semibold text-primary text-xs uppercase tracking-wider">Church Administration</span>
+          <h2 className="font-bold text-2xl text-foreground tracking-tight sm:text-4xl">
             Everything your church needs to stay organized.
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-xs sm:text-sm">
             Streamline administrative operations, manage parish records, and foster community engagement with intuitive,
             reliable tools.
           </p>
@@ -63,14 +63,14 @@ export function ChurchManagementSection() {
             return (
               <div
                 key={feat.title}
-                className="flex flex-col justify-between rounded-xl border bg-card p-5 shadow-xs hover:border-primary/40 transition-colors"
+                className="flex flex-col justify-between rounded-xl border bg-card p-5 shadow-xs transition-colors hover:border-primary/40"
               >
                 <div className="space-y-3">
                   <div className={`flex size-10 items-center justify-center rounded-lg ${feat.color}`}>
                     <Icon className="size-5" />
                   </div>
-                  <h3 className="font-bold text-sm text-foreground">{feat.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{feat.description}</p>
+                  <h3 className="font-bold text-foreground text-sm">{feat.title}</h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed">{feat.description}</p>
                 </div>
               </div>
             );

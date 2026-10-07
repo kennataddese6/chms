@@ -17,6 +17,8 @@ import { sundayServiceAttendance } from "@/data/attendance";
 import { members } from "@/data/members";
 import type { Member, MemberNote } from "@/data/types";
 
+import { MemberAttendanceCalendarDialog } from "../../attendance/_components/member-attendance-calendar-dialog";
+
 interface MemberProfileTabsProps {
   member: Member;
 }
@@ -24,6 +26,7 @@ interface MemberProfileTabsProps {
 export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
   const [notes, setNotes] = useState<MemberNote[]>(member.notes);
   const [newNote, setNewNote] = useState("");
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const handleAddNote = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,17 +48,17 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
 
   return (
     <Tabs defaultValue="overview" className="w-full">
-      <TabsList className="grid w-full grid-cols-4 max-w-md">
-        <TabsTrigger value="overview" className="text-xs gap-1.5">
+      <TabsList className="grid w-full max-w-md grid-cols-4">
+        <TabsTrigger value="overview" className="gap-1.5 text-xs">
           <User className="size-3.5" /> Overview
         </TabsTrigger>
-        <TabsTrigger value="family" className="text-xs gap-1.5">
+        <TabsTrigger value="family" className="gap-1.5 text-xs">
           <Users className="size-3.5" /> Family ({member.family.length})
         </TabsTrigger>
-        <TabsTrigger value="attendance" className="text-xs gap-1.5">
+        <TabsTrigger value="attendance" className="gap-1.5 text-xs">
           <CalendarCheck className="size-3.5" /> Attendance
         </TabsTrigger>
-        <TabsTrigger value="notes" className="text-xs gap-1.5">
+        <TabsTrigger value="notes" className="gap-1.5 text-xs">
           <FileText className="size-3.5" /> Notes ({notes.length})
         </TabsTrigger>
       </TabsList>
@@ -84,11 +87,11 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
               </div>
               <div className="flex justify-between border-b pb-2">
                 <span className="text-muted-foreground">Address:</span>
-                <span className="font-medium text-right max-w-[200px]">{member.address}</span>
+                <span className="max-w-[200px] text-right font-medium">{member.address}</span>
               </div>
               <div className="flex justify-between border-b pb-2">
                 <span className="text-muted-foreground">Status:</span>
-                <Badge variant="outline" className="capitalize text-[10px]">
+                <Badge variant="outline" className="text-[10px] capitalize">
                   {member.status}
                 </Badge>
               </div>
@@ -107,20 +110,32 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
             </CardHeader>
             <CardContent className="space-y-4 text-xs">
               <div className="space-y-1.5">
-                <span className="text-muted-foreground font-medium">Assigned Ministries / Groups:</span>
+                <span className="font-medium text-muted-foreground">Assigned Ministries & Groups:</span>
                 <div className="flex flex-wrap gap-1.5">
                   {member.groups.map((grp) => (
                     <Badge key={grp} variant="secondary" className="text-xs">
                       {grp}
                     </Badge>
                   ))}
+                  <Badge
+                    variant="outline"
+                    className="border-purple-200 bg-purple-500/10 text-purple-700 text-xs dark:text-purple-300"
+                  >
+                    Youth Ministry
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="border-blue-200 bg-blue-500/10 text-blue-700 text-xs dark:text-blue-300"
+                  >
+                    Sunday School
+                  </Badge>
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2 border-t">
+              <div className="space-y-2 border-t pt-2">
                 <div className="flex justify-between font-medium">
                   <span>Attendance Rate</span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">{member.attendanceRate}%</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">{member.attendanceRate}%</span>
                 </div>
                 <Progress value={member.attendanceRate} className="h-2" />
                 <p className="text-[11px] text-muted-foreground">Based on Sunday Service records for Q3/Q4 2026.</p>
@@ -147,10 +162,10 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
                     <Link
                       key={fam.memberId}
                       href={`/dashboard/members/${relative.id}`}
-                      className="flex items-center justify-between rounded-lg border p-3 hover:bg-accent/40 transition-colors"
+                      className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-accent/40"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                        <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary text-xs">
                           {relative.name[0]}
                         </div>
                         <div className="flex flex-col text-xs">
@@ -166,7 +181,7 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
                 })}
               </div>
             ) : (
-              <p className="text-xs text-muted-foreground">No linked family members registered.</p>
+              <p className="text-muted-foreground text-xs">No linked family members registered.</p>
             )}
           </CardContent>
         </Card>
@@ -175,9 +190,19 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
       {/* Tab 3: Attendance */}
       <TabsContent value="attendance" className="mt-4">
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Attendance History</CardTitle>
-            <CardDescription>Sunday Service attendance records for {member.name}</CardDescription>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <div>
+              <CardTitle className="text-base">Attendance History</CardTitle>
+              <CardDescription>Sunday Service attendance records for {member.name}</CardDescription>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setIsCalendarOpen(true)}
+              className="shrink-0 gap-1.5 text-xs"
+            >
+              <CalendarCheck className="size-3.5 text-primary" /> View Calendar History
+            </Button>
           </CardHeader>
           <CardContent>
             {memberAttendance.length > 0 ? (
@@ -202,13 +227,15 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
                 ))}
               </div>
             ) : (
-              <div className="text-xs text-muted-foreground py-4 text-center">
+              <div className="py-4 text-center text-muted-foreground text-xs">
                 Member attendance rate: <span className="font-bold text-foreground">{member.attendanceRate}%</span> over
                 the last 12 weeks.
               </div>
             )}
           </CardContent>
         </Card>
+
+        <MemberAttendanceCalendarDialog memberId={member.id} open={isCalendarOpen} onOpenChange={setIsCalendarOpen} />
       </TabsContent>
 
       {/* Tab 4: Notes */}
@@ -224,7 +251,7 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
                 placeholder="Type pastoral care note or updates here..."
                 value={newNote}
                 onChange={(e) => setNewNote(e.target.value)}
-                className="text-xs min-h-[80px]"
+                className="min-h-[80px] text-xs"
               />
               <Button type="submit" size="sm" className="gap-1.5 text-xs">
                 <Send className="size-3.5" /> Save Note
@@ -236,8 +263,8 @@ export function MemberProfileTabs({ member }: MemberProfileTabsProps) {
         <div className="space-y-3">
           {notes.map((note) => (
             <Card key={note.id}>
-              <CardContent className="pt-4 space-y-1.5 text-xs">
-                <div className="flex justify-between text-muted-foreground font-medium">
+              <CardContent className="space-y-1.5 pt-4 text-xs">
+                <div className="flex justify-between font-medium text-muted-foreground">
                   <span>Author: {note.author}</span>
                   <span>{note.date}</span>
                 </div>

@@ -42,14 +42,14 @@ export function ThreeExperiencesSection() {
   ];
 
   return (
-    <section id="experiences" className="py-16 md:py-24 border-b">
+    <section id="experiences" className="border-b py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-semibold text-primary uppercase tracking-wider">Connected User Roles</span>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-4xl text-foreground">
+        <div className="mx-auto max-w-2xl space-y-3 text-center">
+          <span className="font-semibold text-primary text-xs uppercase tracking-wider">Connected User Roles</span>
+          <h2 className="font-bold text-2xl text-foreground tracking-tight sm:text-4xl">
             Three connected experiences within one platform.
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-xs sm:text-sm">
             Role-tailored interfaces built specifically for administrators, catechists, and students — all sharing one
             real-time data store.
           </p>
@@ -68,13 +68,13 @@ export function ThreeExperiencesSection() {
                     <Icon className="size-6" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{exp.role}</span>
-                    <h3 className="font-extrabold text-base text-foreground mt-0.5">{exp.headline}</h3>
+                    <span className="font-bold text-muted-foreground text-xs uppercase tracking-wider">{exp.role}</span>
+                    <h3 className="mt-0.5 font-extrabold text-base text-foreground">{exp.headline}</h3>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{exp.description}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed">{exp.description}</p>
                 </div>
 
-                <Button size="sm" variant="outline" asChild className="mt-6 w-full text-xs gap-1.5 font-semibold">
+                <Button size="sm" variant="outline" asChild className="mt-6 w-full gap-1.5 font-semibold text-xs">
                   <Link href={exp.href}>
                     {exp.cta} <ArrowRight className="size-3.5" />
                   </Link>

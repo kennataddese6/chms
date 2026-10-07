@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Filter, RotateCcw, Search, UserPlus } from "lucide-react";
+import { RotateCcw, Search, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -58,18 +58,18 @@ export function MembersToolbar({
       <div className="flex flex-wrap items-center gap-2">
         {/* Search */}
         <div className="relative w-full sm:w-64">
-          <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+          <Search className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
           <Input
             placeholder="Search by name, email..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-8 text-xs h-9"
+            className="h-9 pl-8 text-xs"
           />
         </div>
 
         {/* Status Filter */}
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-[130px] h-9 text-xs">
+          <SelectTrigger className="h-9 w-[130px] text-xs">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
@@ -82,7 +82,7 @@ export function MembersToolbar({
 
         {/* Group Filter */}
         <Select value={groupFilter} onValueChange={setGroupFilter}>
-          <SelectTrigger className="w-[150px] h-9 text-xs">
+          <SelectTrigger className="h-9 w-[150px] text-xs">
             <SelectValue placeholder="Ministry / Group" />
           </SelectTrigger>
           <SelectContent>
@@ -98,7 +98,7 @@ export function MembersToolbar({
         </Select>
 
         {(searchQuery || statusFilter !== "all" || groupFilter !== "all") && (
-          <Button variant="ghost" size="sm" onClick={onReset} className="h-9 px-2 text-xs gap-1">
+          <Button variant="ghost" size="sm" onClick={onReset} className="h-9 gap-1 px-2 text-xs">
             <RotateCcw className="size-3.5" />
             Reset
           </Button>

@@ -1,4 +1,4 @@
-import { Award, CheckCircle2, GraduationCap, Lock, ShieldAlert } from "lucide-react";
+import { CheckCircle2, Lock } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,31 +12,31 @@ export default function StudentProgressPage() {
   const currentLevelOrder = EDUCATION_LEVELS.find((l) => l.value === student.level)?.order || 4;
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Level Progression & Catechism Track</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">Level Progression & Catechism Track</h1>
+        <p className="text-muted-foreground text-sm">
           St. Mary&apos;s Education — Academic roadmap from Grade 1 to Candidate status.
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">Education Level Roadmap</CardTitle>
+          <CardTitle className="font-semibold text-base">Education Level Roadmap</CardTitle>
           <CardDescription>Visual stepper of your progress through the 6 education tiers</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="relative border-l-2 border-primary/20 ml-4 pl-6 space-y-6">
+          <div className="relative ml-4 space-y-6 border-primary/20 border-l-2 pl-6">
             {EDUCATION_LEVELS.map((lvl) => {
               const isCompleted = student.completedLevels.includes(lvl.value);
               const isCurrent = student.level === lvl.value;
               const isLocked = lvl.order > currentLevelOrder;
 
               return (
-                <div key={lvl.value} className="relative group">
+                <div key={lvl.value} className="group relative">
                   {/* Step Icon */}
                   <div
-                    className={`absolute -left-[35px] top-0.5 flex size-6 items-center justify-center rounded-full text-xs font-bold ${
+                    className={`absolute top-0.5 -left-[35px] flex size-6 items-center justify-center rounded-full font-bold text-xs ${
                       isCompleted
                         ? "bg-emerald-600 text-white"
                         : isCurrent
@@ -54,7 +54,7 @@ export default function StudentProgressPage() {
                   </div>
 
                   {/* Level Details */}
-                  <div className="rounded-lg border p-4 bg-card space-y-2">
+                  <div className="space-y-2 rounded-lg border bg-card p-4">
                     <div className="flex items-center justify-between">
                       <h4 className="font-bold text-sm">{lvl.label}</h4>
                       {isCompleted && (
@@ -62,7 +62,7 @@ export default function StudentProgressPage() {
                           Completed
                         </Badge>
                       )}
-                      {isCurrent && <Badge className="text-[10px] bg-purple-600">Current Level</Badge>}
+                      {isCurrent && <Badge className="bg-purple-600 text-[10px]">Current Level</Badge>}
                       {isLocked && (
                         <Badge variant="outline" className="text-[10px] text-muted-foreground">
                           Locked
@@ -72,7 +72,7 @@ export default function StudentProgressPage() {
 
                     {isCurrent && (
                       <div className="space-y-1.5 pt-1">
-                        <div className="flex justify-between text-xs font-semibold">
+                        <div className="flex justify-between font-semibold text-xs">
                           <span>Completion Progress</span>
                           <span className="text-purple-600">{student.progress}%</span>
                         </div>
@@ -80,7 +80,7 @@ export default function StudentProgressPage() {
                       </div>
                     )}
 
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       {isCompleted
                         ? "All coursework and exams passed for this tier."
                         : isCurrent

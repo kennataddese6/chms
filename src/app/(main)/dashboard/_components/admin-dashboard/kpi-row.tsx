@@ -1,9 +1,7 @@
 import { Calendar, CalendarCheck, GraduationCap, TrendingDown, TrendingUp, Users } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { events } from "@/data/events";
 import { members } from "@/data/members";
-import { students } from "@/data/students";
 
 export function AdminKpiRow() {
   const totalMembersCount = 427; // Spec total member count
@@ -58,28 +56,28 @@ export function AdminKpiRow() {
         return (
           <Card key={kpi.title} className="relative overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-xs font-medium text-muted-foreground">{kpi.title}</CardTitle>
+              <CardTitle className="font-medium text-muted-foreground text-xs">{kpi.title}</CardTitle>
               <div className={`flex size-8 items-center justify-center rounded-lg ${kpi.color}`}>
                 <Icon className="size-4" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{kpi.value}</div>
+              <div className="font-bold text-2xl">{kpi.value}</div>
               <div className="mt-1 flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">{kpi.description}</span>
                 {kpi.trend === "up" && (
-                  <span className="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-medium">
+                  <span className="inline-flex items-center font-medium text-emerald-600 dark:text-emerald-400">
                     <TrendingUp className="mr-0.5 size-3" />
                     {kpi.change}
                   </span>
                 )}
                 {kpi.trend === "down" && (
-                  <span className="inline-flex items-center text-red-600 dark:text-red-400 font-medium">
+                  <span className="inline-flex items-center font-medium text-red-600 dark:text-red-400">
                     <TrendingDown className="mr-0.5 size-3" />
                     {kpi.change}
                   </span>
                 )}
-                {kpi.trend === "neutral" && <span className="text-muted-foreground font-medium">{kpi.change}</span>}
+                {kpi.trend === "neutral" && <span className="font-medium text-muted-foreground">{kpi.change}</span>}
               </div>
             </CardContent>
           </Card>

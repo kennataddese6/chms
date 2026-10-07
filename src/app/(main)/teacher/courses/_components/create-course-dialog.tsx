@@ -133,7 +133,7 @@ export function CreateCourseDialog({ onAddCourse }: CreateCourseDialogProps) {
                 placeholder="Overview of course objectives and scope..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="text-xs min-h-[70px]"
+                className="min-h-[70px] text-xs"
               />
             </div>
           </div>

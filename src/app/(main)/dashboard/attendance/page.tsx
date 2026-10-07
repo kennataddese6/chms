@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import { members } from "@/data/members";
 import { useAttendanceStore } from "@/stores/attendance/attendance-store";
 
 import { AttendanceStats } from "./_components/attendance-stats";
@@ -14,7 +13,7 @@ export default function AttendancePage() {
   const { records, markAttendance, markAllPresent } = useAttendanceStore();
 
   const eventRecords = records.filter((r) => r.eventId === selectedEventId);
-  const demoPresentCount = eventRecords.filter((r) => r.status === "present").length;
+  const _demoPresentCount = eventRecords.filter((r) => r.status === "present").length;
 
   // Headline organization-level totals (427 total members, 312 avg attendance)
   const totalOrgMembers = 427;
@@ -24,8 +23,8 @@ export default function AttendancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Attendance Register</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">Attendance Register</h1>
+        <p className="text-muted-foreground text-sm">
           St. Mary&apos;s Community Church — Sunday Service headline attendance: 312 present (of 427 members).
           Interactive roster below shows representative demo records.
         </p>

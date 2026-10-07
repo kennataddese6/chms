@@ -46,7 +46,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold text-sm">{APP_CONFIG.name}</span>
-                  <span className="text-[11px] text-blue-600 dark:text-blue-400 font-medium">Admin Portal</span>
+                  <span className="font-medium text-[11px] text-blue-600 dark:text-blue-400">Admin Portal</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -58,12 +58,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter className="p-3">
         <div className="flex items-center gap-3 rounded-lg border bg-card p-3 shadow-xs">
-          <div className="flex size-9 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 font-semibold text-xs">
+          <div className="flex size-9 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-700 text-xs dark:bg-blue-950 dark:text-blue-300">
             AD
           </div>
-          <div className="flex flex-col text-xs min-w-0 flex-1">
-            <span className="font-semibold truncate">{user.name}</span>
-            <span className="text-muted-foreground truncate">{user.title}</span>
+          <div className="flex min-w-0 flex-1 flex-col text-xs">
+            <span className="truncate font-semibold">{user.name}</span>
+            <span className="truncate text-muted-foreground">{user.title}</span>
           </div>
         </div>
       </SidebarFooter>

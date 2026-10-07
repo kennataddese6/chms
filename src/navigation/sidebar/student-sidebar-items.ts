@@ -1,4 +1,4 @@
-import { Award, BookOpen, CheckSquare, LayoutDashboard, type LucideIcon, TrendingUp } from "lucide-react";
+import { Award, BookOpen, CheckSquare, LayoutDashboard, TrendingUp } from "lucide-react";
 
 import type { NavGroup } from "./admin-sidebar-items";
 

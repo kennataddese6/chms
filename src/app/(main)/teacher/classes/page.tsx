@@ -15,33 +15,33 @@ export default function TeacherClassesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">My Classes & Catechism Tiers</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">My Classes & Catechism Tiers</h1>
+        <p className="text-muted-foreground text-sm">
           Assigned education classes for Fr. James Osei at St. Mary&apos;s Community Church.
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {myClasses.map((cls) => (
-          <Card key={cls.id} className="flex flex-col justify-between hover:border-emerald-500/40 transition-colors">
+          <Card key={cls.id} className="flex flex-col justify-between transition-colors hover:border-emerald-500/40">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <Badge
                   variant="outline"
-                  className="text-xs bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-300"
+                  className="border-emerald-300 bg-emerald-500/10 text-emerald-700 text-xs dark:text-emerald-300"
                 >
                   {getLevelLabel(cls.level)}
                 </Badge>
-                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="font-bold text-emerald-600 text-xs dark:text-emerald-400">
                   Avg Score: {cls.averageGrade}%
                 </span>
               </div>
-              <CardTitle className="text-lg font-bold mt-2 leading-snug">{cls.name}</CardTitle>
+              <CardTitle className="mt-2 font-bold text-lg leading-snug">{cls.name}</CardTitle>
               <CardDescription className="text-xs">{cls.subject}</CardDescription>
             </CardHeader>
 
-            <CardContent className="pt-0 space-y-4">
-              <div className="rounded-md border p-2.5 bg-accent/20 text-xs space-y-1.5">
+            <CardContent className="space-y-4 pt-0">
+              <div className="space-y-1.5 rounded-md border bg-accent/20 p-2.5 text-xs">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Enrolled Students:</span>
                   <span className="font-bold text-foreground">{cls.studentCount}</span>
@@ -52,7 +52,7 @@ export default function TeacherClassesPage() {
                 </div>
               </div>
 
-              <Button size="sm" variant="outline" asChild className="w-full text-xs gap-1.5">
+              <Button size="sm" variant="outline" asChild className="w-full gap-1.5 text-xs">
                 <Link href={`/teacher/classes/${cls.id}`}>
                   View Class & Students <ArrowRight className="size-3.5" />
                 </Link>

@@ -1,13 +1,11 @@
-import Link from "next/link";
-
 import { Church } from "lucide-react";
 
 import { APP_CONFIG } from "@/config/app-config";
 
 export function LandingFooter() {
   return (
-    <footer className="border-t py-8 bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 text-xs text-muted-foreground">
+    <footer className="border-t bg-background py-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-muted-foreground text-xs sm:flex-row sm:px-6">
         <div className="flex items-center gap-2">
           <Church className="size-4 text-primary" />
           <span className="font-semibold text-foreground">{APP_CONFIG.name}</span>

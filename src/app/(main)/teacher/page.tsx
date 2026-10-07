@@ -6,8 +6,8 @@ export default function TeacherDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Teacher Portal Overview</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-bold text-2xl tracking-tight">Teacher Portal Overview</h1>
+        <p className="text-muted-foreground text-sm">
           Welcome back, Fr. James Osei — Senior Catechist & Bible Teacher at St. Mary&apos;s.
         </p>
       </div>

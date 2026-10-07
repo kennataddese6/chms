@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 import { ArrowLeft, ArrowRight, CheckCircle2, Download, FileText, HelpCircle, PlayCircle } from "lucide-react";
 
@@ -19,7 +18,7 @@ export default async function LessonViewerPage({ params }: LessonViewerPageProps
   const lesson = lessons.find((l) => l.id === lessonId) || lessons[0];
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-6">
       <Button variant="ghost" size="sm" asChild className="gap-1.5 text-xs">
         <Link href={`/student/courses/${course.id}`}>
           <ArrowLeft className="size-3.5" /> Back to {course.title}
@@ -36,25 +35,25 @@ export default async function LessonViewerPage({ params }: LessonViewerPageProps
             {lesson.contentType} Content
           </Badge>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">{lesson.title}</h1>
-        <p className="text-xs text-muted-foreground">{lesson.description}</p>
+        <h1 className="font-bold text-2xl tracking-tight">{lesson.title}</h1>
+        <p className="text-muted-foreground text-xs">{lesson.description}</p>
       </div>
 
       {/* Media / Video Placeholder */}
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-black/90 flex flex-col items-center justify-center text-white p-6 shadow-md">
-        <div className="flex size-16 items-center justify-center rounded-full bg-primary/90 text-primary-foreground shadow-lg hover:scale-105 transition-transform cursor-pointer">
-          <PlayCircle className="size-10 ml-1" />
+      <div className="relative flex aspect-video w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-black/90 p-6 text-white shadow-md">
+        <div className="flex size-16 cursor-pointer items-center justify-center rounded-full bg-primary/90 text-primary-foreground shadow-lg transition-transform hover:scale-105">
+          <PlayCircle className="ml-1 size-10" />
         </div>
-        <span className="mt-3 text-sm font-semibold">Video Lecture — {lesson.duration}</span>
+        <span className="mt-3 font-semibold text-sm">Video Lecture — {lesson.duration}</span>
         <span className="text-xs text-zinc-400">Click to play lecture recording</span>
       </div>
 
       {/* Lesson Content Text */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-semibold">Lecture Notes & Exposition</CardTitle>
+          <CardTitle className="font-semibold text-base">Lecture Notes & Exposition</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 text-xs leading-relaxed text-foreground/90 whitespace-pre-line">
+        <CardContent className="space-y-4 whitespace-pre-line text-foreground/90 text-xs leading-relaxed">
           {lesson.content}
         </CardContent>
       </Card>
@@ -63,7 +62,7 @@ export default async function LessonViewerPage({ params }: LessonViewerPageProps
       {lesson.resources.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-base font-semibold">Study Resources</CardTitle>
+            <CardTitle className="font-semibold text-base">Study Resources</CardTitle>
             <CardDescription>Supplemental reading materials and PDF handouts</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -73,7 +72,7 @@ export default async function LessonViewerPage({ params }: LessonViewerPageProps
                   <FileText className="size-4 text-primary" />
                   <span className="font-semibold">{res.title}</span>
                 </div>
-                <Button variant="outline" size="sm" className="h-7 text-[11px] gap-1">
+                <Button variant="outline" size="sm" className="h-7 gap-1 text-[11px]">
                   <Download className="size-3" /> Download
                 </Button>
               </div>
@@ -83,14 +82,14 @@ export default async function LessonViewerPage({ params }: LessonViewerPageProps
       )}
 
       {/* Actions & Next Step */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t">
-        <Button variant="outline" size="sm" className="text-xs gap-1.5">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-2">
+        <Button variant="outline" size="sm" className="gap-1.5 text-xs">
           <CheckCircle2 className="size-4 text-emerald-600" />
           Mark Lesson as Completed
         </Button>
 
         {lesson.hasQuiz && lesson.quizId && (
-          <Button size="sm" asChild className="text-xs gap-1.5 bg-purple-600 hover:bg-purple-700 text-white">
+          <Button size="sm" asChild className="gap-1.5 bg-purple-600 text-white text-xs hover:bg-purple-700">
             <Link href={`/student/quizzes/${lesson.quizId}`}>
               <HelpCircle className="size-4" />
               Take Lesson Quiz <ArrowRight className="size-3.5" />
